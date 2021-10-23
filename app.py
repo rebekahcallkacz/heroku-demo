@@ -7,35 +7,37 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Add the connection to the sqlite database
-app.config["SQLALCHEMY_DATABASE_URI"] = "YOUR CONNECTION STRING HERE"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "YOUR CONNECTION STRING HERE"
 # This just ensures that the app runs more quickly
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Get the db instance
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
 # Table classes which are based on db schema
-class ItemInfo(db.Model):
-    __tablename__ = "item_info"
-    unique_id = db.Column(db.String, primary_key = True)
-    item = db.Column(db.String)
-    total_wears = db.Column(db.Integer)
-    cost_per_wear = db.Column(db.Integer)
-    wears_per_month = db.Column(db.Integer)
-    date_acquired = db.Column(db.String)
-    cost = db.Column(db.Integer)
-    source = db.Column(db.String)
-    category = db.Column(db.String)
+# class ItemInfo(db.Model):
+#     __tablename__ = "item_info"
+#     unique_id = db.Column(db.String, primary_key = True)
+#     item = db.Column(db.String)
+#     total_wears = db.Column(db.Integer)
+#     cost_per_wear = db.Column(db.Integer)
+#     wears_per_month = db.Column(db.Integer)
+#     date_acquired = db.Column(db.String)
+#     cost = db.Column(db.Integer)
+#     source = db.Column(db.String)
+#     category = db.Column(db.String)
 
-class WearCount(db.Model):
-    __tablename__ = "wear_count"
-    unique_id = db.Column(db.String, primary_key = True)
-    month = db.Column(db.String)
-    wears = db.Column(db.Integer)
+# class WearCount(db.Model):
+#     __tablename__ = "wear_count"
+#     unique_id = db.Column(db.String, primary_key = True)
+#     month = db.Column(db.String)
+#     wears = db.Column(db.Integer)
 
 ######## API Routes ########
 # This route renders the homepage
-
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 # This route returns info about individual items
